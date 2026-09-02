@@ -1,0 +1,44 @@
+name: Build + Test
+
+on: [push, pull_request]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # The license and provenance travel inside the archive users install.
+      - run: cp LICENSE NOTICE Std/
+      - run: zip -r Std.zip Std -x "*.DS_Store"
+
+      - name: Upload style to release
+        uses: svenstaro/upload-release-action@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: Std.zip
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Each rule carries its cases in-source, under a `tests:` key `vale
+      # test` reads and the compiler ignores. That, and rule inheritance,
+      # live on the v3 branch until the next release -- so Vale is built
+      # from source here, and the tarball install returns when it ships.
+      - uses: actions/checkout@v4
+        with:
+          repository: vale-cli/vale
+          ref: v3
+          path: vale-src
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: vale-src/go.mod
+      - run: go build -o "$PWD/bin/vale" ./cmd/vale
+        working-directory: vale-src
+      - run: echo "$PWD/bin" >> $GITHUB_PATH
+        working-directory: vale-src
+
+      - run: vale test Std
