@@ -30,7 +30,6 @@ swap:
   manpower: workforce
   mans: operates
   middle(?:m[ae]n|wom[ae]n): intermediary
-  name: replace
   news(?:m[ae]n|wom[ae]n): journalist(s)
   ombuds(?:man|woman): ombuds
   oneupmanship: upstaging
@@ -58,4 +57,9 @@ tests:
   - name: clean
     input: >
       The chair asked the firefighters about workforce needs.
+    want: ""
+
+  - name: name is a word
+    input: >
+      Enter your name in the form.
     want: ""

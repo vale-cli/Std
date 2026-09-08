@@ -26,8 +26,8 @@ the stability a parent owes its children.
 
 ## Install
 
-> Rule inheritance, nested rules, and in-source tests require Vale v3.20.0
-> or later; `meta.json` enforces this at sync time.
+> Rule inheritance and nested rules require Vale v3.20.0 or later;
+> `meta.json` enforces this at sync time.
 
 ```ini
 Packages = https://github.com/vale-cli/Std/releases/latest/download/Std.zip
@@ -87,13 +87,9 @@ attribution.
 
 ## Tests
 
-Every rule carries its cases in-source, under a `tests:` key at the end of
-the file. Each has a case that must trip the rule and one that must stay
-clean:
-
-```console
-$ vale test Std
-```
+Every rule is tested, with a case that must trip it and one that must stay
+clean -- a Vale rule that matches nothing fails silently, so a rule is only
+proven by a fixture that fires it. CI runs the whole set on every push.
 
 ## License
 
