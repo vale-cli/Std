@@ -14,7 +14,7 @@ swap:
   authoress: author
   camera(?:m[ae]n|wom[ae]n): camera operator(s)
   chair(?:m[ae]n|wom[ae]n): chair
-  door(?:m[ae]|wom[ae]n): concierge(s)
+  door(?:m[ae]n|wom[ae]n): concierge(s)
   draft(?:m[ae]n|wom[ae]n): drafter(s)
   fire(?:m[ae]n|wom[ae]n): firefighter(s)
   fisher(?:m[ae]n|wom[ae]n): fisher(s)
@@ -58,6 +58,12 @@ tests:
     input: >
       The chair asked the firefighters about workforce needs.
     want: ""
+
+  - name: doorman
+    input: >
+      Ask the doorman.
+    want: |
+      1:9:Std.Usage.GenderedTerms:Consider 'concierge(s)' instead of 'doorman'.
 
   - name: name is a word
     input: >
