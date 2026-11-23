@@ -38,7 +38,7 @@ swap:
   repair(?:m[ae]n|wom[ae]n): technician(s)
   sales(?:m[ae]n|wom[ae]n): salesperson or sales people
   service(?:m[ae]n|wom[ae]n): soldier(s)
-  steward(?:ess)?: flight attendant
+  stewardess(?:es)?: flight attendant
   tribes(?:m[ae]n|wom[ae]n): tribe member(s)
   waitress: waiter
   woman doctor: doctor
@@ -69,3 +69,9 @@ tests:
     input: >
       Enter your name in the form.
     want: ""
+
+  - name: steward is neutral
+    input: >
+      The release steward asked a stewardess for help.
+    want: |
+      1:29:Std.Usage.GenderedTerms:Consider 'flight attendant' instead of 'stewardess'.
