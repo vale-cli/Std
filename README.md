@@ -30,7 +30,7 @@ the stability a parent owes its children.
 > `meta.json` enforces this at sync time.
 
 ```ini
-Packages = https://github.com/vale-cli/Std/releases/latest/download/Std.zip
+Packages = Std
 
 [*.md]
 BasedOnStyles = Std
@@ -39,6 +39,10 @@ BasedOnStyles = Std
 ```console
 $ vale sync
 ```
+
+`Std` is in the [package library](https://vale.sh/explorer), so the name is
+enough. To pin a version, give its release URL instead:
+`https://github.com/vale-cli/Std/releases/download/<version>/Std.zip`.
 
 Enabled stock, it's a reasonable generic style. Tune it from your config --
 levels and toggles as always, scalars with the bracket key:
