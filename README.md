@@ -13,10 +13,11 @@ Std/
 ├── Abbreviations/   Acronyms, Latin
 ├── DateTime/        DateFormat, TimeFormat
 ├── Grammar/         Contractions, PassiveVoice
-├── Punctuation/     OxfordComma, Ellipses, Spacing
+├── Headings/        Capitalization
+├── Punctuation/     Dashes, Ellipses, OxfordComma, QuotePlacement, Spacing
 ├── Readability/     SentenceLength
 └── Usage/           FirstPersonSingular, FirstPersonPlural,
-                     GenderedPronouns, GenderedTerms
+                     GenderedPronouns, GenderedTerms, Units
 ```
 
 The directory is the name: `Std/Grammar/PassiveVoice.yml` is
@@ -75,14 +76,18 @@ Three lines, your name on the alert, Std's machinery underneath. `tokens+`,
 | `DateTime.TimeFormat` | Consistent time-of-day formatting | Google |
 | `Grammar.Contractions` | Contractions over their long forms, with sentence-final guards | Microsoft |
 | `Grammar.PassiveVoice` | Passive voice, via the full irregular-participle list | Google |
+| `Headings.Capitalization` | Headings not in sentence case; `[match]` switches to title case | Google + Microsoft |
+| `Punctuation.Dashes` | Spaces around em and en dashes | Google + Microsoft |
 | `Punctuation.Ellipses` | ASCII and Unicode ellipses | Google + IBM |
 | `Punctuation.OxfordComma` | A missing serial comma, with false-positive guards | Google |
+| `Punctuation.QuotePlacement` | Commas and periods outside closing quotation marks | Google + Microsoft |
 | `Punctuation.Spacing` | Missing or doubled space at sentence boundaries | Microsoft |
 | `Readability.SentenceLength` | Sentences over 25 words | IBM |
 | `Usage.FirstPersonSingular` | 'I', 'me', 'my' and contractions | Microsoft |
 | `Usage.FirstPersonPlural` | 'we', 'us', 'ours', 'let's' | Google |
 | `Usage.GenderedPronouns` | 'he/she'-style constructions | Google |
 | `Usage.GenderedTerms` | Gendered job titles and idioms, with replacements | Google + Microsoft |
+| `Usage.Units` | A number run into its unit ('512MB', '30s') | Google |
 
 A rule enters the library once it exists in two or more published styles, or
 has otherwise proven itself. Std is where patterns get promoted, never where

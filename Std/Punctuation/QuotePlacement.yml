@@ -1,0 +1,19 @@
+# Extracted from errata-ai/Microsoft and errata-ai/Google (MIT). See NOTICE.
+#
+extends: existence
+message: "Put the comma or period inside the quotation marks: '%s'."
+level: suggestion
+nonword: true
+tokens:
+  - '["“][^"”“]+["”][.,]'
+tests:
+  - name: fires
+    input: >
+      The button says "Save".
+    want: |
+      1:17:Std.Punctuation.QuotePlacement:Put the comma or period inside the quotation marks: '"Save".'.
+
+  - name: clean
+    input: >
+      The button says "Save."
+    want: ""

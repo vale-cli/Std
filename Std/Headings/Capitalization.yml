@@ -1,0 +1,33 @@
+# Extracted from errata-ai/Google and errata-ai/Microsoft (MIT). See NOTICE.
+#
+# No colon indicator: Microsoft capitalizes after a colon and Google doesn't.
+# Add `indicators: [":"]` in a child rule for the Microsoft convention, or
+# switch styles with `Std.Headings.Capitalization[match] = $title`.
+extends: capitalization
+message: "'%s' should use sentence-style capitalization."
+level: suggestion
+scope: heading
+match: $sentence
+exceptions:
+  - CLI
+  - Docker
+  - gRPC
+  - I
+  - JSON
+  - Kubernetes
+  - Linux
+  - macOS
+  - TypeScript
+  - URLs
+  - Windows
+tests:
+  - name: fires
+    input: |
+      # Configure The Linter
+    want: |
+      1:3:Std.Headings.Capitalization:'Configure The Linter' should use sentence-style capitalization.
+
+  - name: clean
+    input: |
+      # Configure the linter on Linux
+    want: ""

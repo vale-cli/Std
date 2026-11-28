@@ -1,0 +1,25 @@
+# Extracted from errata-ai/Microsoft and errata-ai/Google (MIT). See NOTICE.
+#
+extends: existence
+message: "Remove the spaces around '%s'."
+level: suggestion
+nonword: true
+action:
+  name: edit
+  params:
+    - trim
+    - " "
+tokens:
+  - '\s[—–]\s|\s[—–]|[—–]\s'
+tests:
+  - name: fires
+    input: >
+      The cache — once warm — is fast.
+    want: |
+      1:10:Std.Punctuation.Dashes:Remove the spaces around ' — '.
+      1:22:Std.Punctuation.Dashes:Remove the spaces around ' — '.
+
+  - name: clean
+    input: >
+      The cache—once warm—is fast, and pages 1–5 load first.
+    want: ""

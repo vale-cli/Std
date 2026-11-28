@@ -1,0 +1,23 @@
+# Extracted from errata-ai/Google (MIT). See NOTICE.
+#
+extends: existence
+message: "Put a space between the number and the unit in '%s'."
+level: suggestion
+nonword: true
+tokens:
+  - '\b\d+(?:B|kB|MB|GB|TB)\b'
+  - '\b\d+(?:ns|ms|min|h|d)\b'
+  # Seconds are split out so a decade ('1990s') isn't read as a unit.
+  - '\b\d+s\b(?<!\b(?:19|20)\d\ds\b)'
+tests:
+  - name: fires
+    input: >
+      The image is 512MB and boots in 30s.
+    want: |
+      1:14:Std.Usage.Units:Put a space between the number and the unit in '512MB'.
+      1:33:Std.Usage.Units:Put a space between the number and the unit in '30s'.
+
+  - name: clean
+    input: >
+      The image is 512 MB, boots in 30 s, and dates from the 1990s.
+    want: ""
